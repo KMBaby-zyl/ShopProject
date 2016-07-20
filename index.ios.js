@@ -6,19 +6,20 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
 import App from './js/app.js';
 
+
 class AwesomeProject extends Component {
-  render() {
-    return (
-       <App></App>
-    );
-  }
+    render() {
+        return (
+            <App></App>
+        );
+    }
 }
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);

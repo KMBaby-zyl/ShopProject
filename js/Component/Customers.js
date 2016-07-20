@@ -13,28 +13,29 @@ export default class Customers extends Component {
     constructor(props) {
         super(props);
 
+        const realm = new Realm({schema: [Person]});
+
+        // Query
+        let people = realm.objects('Person').filtered('age >= 17');
+        // people.length // => 0
+
+        // Write
+        realm.write(() => {
+            savedPerson = realm.create('Person', {
+                name: 'Hal Incandenza3',
+                age: 17,
+            });
+        });
+
         this.state = {
             left: 100,
             right: 100,
             img: '',
             name: '顾客',
             showType: '0',
+            peopleNum: people.length,
             equipment: null // 携带的装备id
         };
-
-        // const realm = new Realm({schema: [Person]});
-
-        // // Query
-        // let people = realm.objects('Person', 'age >= 17');
-        // people.length // => 0
-
-        // // Write
-        // realm.write(() => {
-        //     savedPerson = realm.create('Person', {
-        //         name: 'Hal Incandenza',
-        //         age: 17,
-        //     });
-        // });
     }
 
     render() {
@@ -43,7 +44,7 @@ export default class Customers extends Component {
             <View>
                 {
                     <Image source={''} >
-                        <Text>{this.state.name}</Text>
+                        <Text>{this.state.name + this.state.peopleNum}</Text>
                     </Image>
                 }
             </View>
