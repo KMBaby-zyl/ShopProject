@@ -17,13 +17,13 @@ export default class Shop extends Component {
     styles = StyleSheet.create({
         front: {
             width: 300,
-            height: 600,
-            backgroundColor: '#222222'
+            height: 300,
+            backgroundColor: '#FFD700'
         },
         backend: {
             width: 300,
-            height: 600,
-            backgroundColor: '#2d2d2d'
+            height: 300,
+            backgroundColor: '#D1EEEE'
         }
     });
 
@@ -38,12 +38,19 @@ export default class Shop extends Component {
                 {
                     (this.props.showType == 'front') ?
                     <View style={this.styles.front}
-                        onStartShouldSetResponder={ () =>
+                        onResponderGrant={ () => {
+                            console.warn('backend');
                             dispatch(changeDoor('backend'))
+                        }
                         }>
                         <Text>{'正门' + this.props.showType}</Text>
                     </View>
-                    : <View style={this.styles.backend}>
+                    : <View style={this.styles.backend}
+                            onResponderGrant={ () => {
+                                console.warn('front');
+                                dispatch(changeDoor('front'))
+                            }
+                        }>
                         <Text>{'后门' + this.props.showType}</Text>
                     </View>
                 }

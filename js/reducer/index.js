@@ -9,7 +9,6 @@ export function r_changeDoor(state = initialState, action) {
         return initialState
     }
 
-    console.warn(action.type);
     switch (action.type) {
         case 'change_door':
             return change_door(state, action)
