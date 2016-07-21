@@ -4,7 +4,8 @@ import {
   View,
   Image,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
 
@@ -30,28 +31,25 @@ export default class Shop extends Component {
     render() {
         const { dispatch } = this.props
 
-        setTimeout(function(){
-            dispatch(changeDoor('backend'))
-        }, 3000);
         return (
             <View>
                 {
                     (this.props.showType == 'front') ?
-                    <View style={this.styles.front}
-                        onResponderGrant={ () => {
-                            console.warn('backend');
+                    <View style={this.styles.front}>
+                        <TouchableHighlight onPress={() => {
                             dispatch(changeDoor('backend'))
-                        }
-                        }>
-                        <Text>{'正门' + this.props.showType}</Text>
+                            }
+                        } style={this.styles.backend}>
+                            <Text>{'正门' + this.props.showType}</Text>
+                        </TouchableHighlight>
                     </View>
-                    : <View style={this.styles.backend}
-                            onResponderGrant={ () => {
-                                console.warn('front');
+                    : <View style={this.styles.backend}>
+                        <TouchableHighlight onPress={ () => {
                                 dispatch(changeDoor('front'))
                             }
-                        }>
-                        <Text>{'后门' + this.props.showType}</Text>
+                        } style={this.styles.front}>
+                            <Text>{'后门' + this.props.showType}</Text>
+                        </TouchableHighlight>
                     </View>
                 }
             </View>
