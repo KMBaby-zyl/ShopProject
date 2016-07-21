@@ -6,11 +6,11 @@ export function changeDoor(text) {
   return { type: CHANGE_DOOR, text }
 }
 
-export function addCustom(id) {
-  return { type: ADD_CUSTOMER, id: id }
+export function addCustom() {
+  return { type: ADD_CUSTOMER}
 }
 
-export function clickCustom(id) {
-  return { type: CLICK_CUSTOMER, id: id }
+export function clickCustom(item) {
+  return { type: CLICK_CUSTOMER, item: item }
 }
 

@@ -8,9 +8,11 @@ import {
   StyleSheet
 } from 'react-native';
 
-import cDao from '../dao/customerDao.js';
 
-export default class Customers extends Component {
+import { clickCustom, addCustom } from '../action/action.js';
+import { connect } from 'react-redux';
+
+class Customers extends Component {
     constructor(props) {
         super(props);
 
@@ -21,10 +23,12 @@ export default class Customers extends Component {
             name: '顾客',
             showType: '0',
             peopleNum: 2,
-            equipment: null // 携带的装备id
+            equipment: null, // 携带的装备id
+            // customerList: props.customerList
         };
 
-        cDao.addOne();
+        const { dispatch } = this.props;
+        // dispatch(addCustom());
     }
 
     styles = StyleSheet.create({
@@ -35,14 +39,28 @@ export default class Customers extends Component {
         }
     });
 
-    render() {
+    // componentWillReceiveProps(nextProps){
+    //     console.warn('revice');
+    //     this.setState({
+    //         customerList: props.customerList
+    //     });
+    // }
 
+    render() {
+        let self = this;
+        const { dispatch } = this.props;
+
+        console.warn(JSON.stringify('render' + this.props.customerList.length));
         return (
             <View>
                 {
-                    <TouchableHighlight onPress={} style={this.styles.customer_1}>
-                        <Text>{this.state.name + this.state.peopleNum}</Text>
-                    </TouchableHighlight>
+                    this.props.customerList.map(function(item){
+                        return <TouchableHighlight key={item.id} onPress={ () =>{
+                                dispatch(clickCustom(item))
+                            }} style={self.styles.customer_1}>
+                                <Text>{self.state.name + self.state.peopleNum}</Text>
+                            </TouchableHighlight>
+                    })
                 }
             </View>
         )
@@ -50,3 +68,12 @@ export default class Customers extends Component {
 }
 
 
+
+function select(state){
+    console.warn(JSON.stringify('connect'+state.customerList.length));
+    return {
+        customerList: state.customerList
+    }
+}
+
+export default connect(select)(Customers);
