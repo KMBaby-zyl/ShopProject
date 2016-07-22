@@ -1,5 +1,7 @@
 import {addCustom, clickCustom} from '../action/action.js';
 import cDao from '../dao/customerDao.js';
+import Mock from 'mockjs';
+import {ScreenHeight, ScreenWidth} from '../utils/common.js';
 
 const initialState = {
   customerList: cDao.findALl()
@@ -16,6 +18,8 @@ export function rCustomer(state = initialState, action) {
             return add_customer(state, action);
         case 'CLICK_CUSTOMER':
             return click_customer(state, action);
+        case 'UPDATE_CUSTOMER':
+            return upate_customer(state, action);
         default:
             return state;
     }
@@ -37,12 +41,22 @@ function click_customer(state, action){
 
     cDao.delOne(action.id);
 
-    // JSON.stringify(state);
-
-    // let r = delete item;
-
     return Object.assign({}, state, {
         customerList: customerList
     });
 }
 
+function upate_customer(state, action){
+    customerList = state.customerList.map(function(item){
+        item.left = Mock.mock('@integer(0, ' + ScreenWidth + ')');
+        item.top = Mock.mock('@integer(0, ' + ScreenHeight + ')');
+
+        return item;
+    });
+
+    // console.warn(JSON.stringify(customerList));
+
+    return Object.assign({}, state, {
+        customerList: customerList
+    });
+}

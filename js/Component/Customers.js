@@ -62,7 +62,7 @@ class Customers extends Component {
 
 
 function select(state){
-    // console.warn(JSON.stringify('connect'+state.customerList.length));
+    console.warn('connect' + JSON.stringify(state.customerList));
     return {
         customerList: state.customerList
     }
