@@ -1,6 +1,7 @@
 const Realm = require('realm');
 import Customer from '../db/Customer.js';
 import {guid} from '../utils/utils.js';
+import Mock from 'mockjs';
 
 const realm = new Realm({schema: [Customer]});
 
@@ -8,10 +9,11 @@ export default class CustomerDao {}
 
 CustomerDao.addOne = function(){
 
-    let d = {
-        name: 'Hal Incandenza2',
-        id: guid()
-    };
+    let d = Mock.mock({
+        name: '@cname',
+        left: '@integer(60, 100)',
+        id: '@guid'
+    });
     // Write
     realm.write(() => {
         let savedPerson = realm.create('Customer', d);

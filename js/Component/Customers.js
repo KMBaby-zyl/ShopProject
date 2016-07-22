@@ -22,7 +22,6 @@ class Customers extends Component {
             img: '',
             name: '顾客',
             showType: '0',
-            peopleNum: 2,
             equipment: null, // 携带的装备id
             // customerList: props.customerList
         };
@@ -35,7 +34,10 @@ class Customers extends Component {
         customer_1: {
             width: 50,
             height: 50,
-            backgroundColor: '#FFD700'
+            backgroundColor: '#FFD700',
+            top: 0,
+            left: 0,
+            // position: 'absolute'
         }
     });
 
@@ -58,7 +60,7 @@ class Customers extends Component {
                         return <TouchableHighlight key={item.id} onPress={ () =>{
                                 dispatch(clickCustom(item.id))
                             }} style={self.styles.customer_1}>
-                                <Text>{self.state.name + self.state.peopleNum}</Text>
+                                <Text>{item.name }</Text>
                             </TouchableHighlight>
                     })
                 }

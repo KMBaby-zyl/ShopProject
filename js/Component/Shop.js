@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import {ScreenHeight, ScreenWidth} from '../utils/common.js';
 import {
   View,
   Image,
@@ -12,18 +12,15 @@ import {
 import { changeDoor } from '../action/action.js';
 import { connect } from 'react-redux';
 
-
 export default class Shop extends Component {
 
     styles = StyleSheet.create({
         front: {
-            width: 300,
-            height: 300,
+            height: ScreenHeight,
             backgroundColor: '#FFD700'
         },
         backend: {
-            width: 300,
-            height: 300,
+            height: ScreenHeight,
             backgroundColor: '#D1EEEE'
         }
     });
