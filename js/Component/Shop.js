@@ -12,16 +12,24 @@ import {
 import { changeDoor } from '../action/action.js';
 import { connect } from 'react-redux';
 
-export default class Shop extends Component {
+import Customers from '../Component/Customers.js';
+import { createStore } from 'redux';
+import { rCustomer } from '../reducer/rCustomer.js';
+let store_custom = createStore(rCustomer);
+
+
+class Shop extends Component {
 
     styles = StyleSheet.create({
         front: {
-            height: ScreenHeight,
+            height: 100,
+            width: 100,
             backgroundColor: '#dfdfdf',
             position: 'absolute',
         },
         backend: {
-            height: ScreenHeight,
+            height: 100,
+            width: 100,
             backgroundColor: '#D1EEEE',
             position: 'absolute',
         }
@@ -34,22 +42,21 @@ export default class Shop extends Component {
             <View>
                 {
                     (this.props.showType == 'front') ?
-                    <View >
-                        <TouchableHighlight onPress={() => {
-                            dispatch(changeDoor('backend'))
-                            }
-                        } style={this.styles.front}>
-                            <Text>{'正门' + this.props.showType}</Text>
-                        </TouchableHighlight>
-                    </View>
-                    : <View >
-                        <TouchableHighlight onPress={ () => {
+                    <TouchableHighlight onPress={() => {
+                        dispatch(changeDoor('backend'))
+                        }
+                    } style={this.styles.front}>
+                        <Text>{'正门' + this.props.showType}</Text>
+                    </TouchableHighlight>
+                    :   <TouchableHighlight onPress={ () => {
                                 dispatch(changeDoor('front'))
                             }
                         } style={this.styles.backend}>
                             <Text>{'后门' + this.props.showType}</Text>
                         </TouchableHighlight>
-                    </View>
+                }
+                {
+                    <Customers store={store_custom}></Customers>
                 }
             </View>
         )

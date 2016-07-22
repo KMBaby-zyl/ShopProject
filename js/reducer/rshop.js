@@ -5,11 +5,12 @@ const initialState = {
 };
 
 export function rshop(state = initialState, action) {
+    console.warn(action.type);
+
     if (typeof state === 'undefined') {
         return initialState
     }
 
-    console.warn(action.type);
     switch (action.type) {
         case 'change_door':
             return change_door(state, action)

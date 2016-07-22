@@ -30,14 +30,21 @@ class Customers extends Component {
         // dispatch(addCustom());
     }
 
+    styles = StyleSheet.create({
+        view: {
+            height: 0,
+            width: 0,
+            backgroundColor: '#dfdfdf',
+            position: 'absolute',
+        }
+    });
     render() {
         let self = this;
         const { dispatch } = this.props;
 
-
         // console.warn(JSON.stringify('render' + this.props.customerList));
         return (
-            <View>
+            <View style={this.styles.view}>
                 {
                     this.props.customerList.map(function(item){
                         return <TouchableHighlight key={item.id} onPress={ () =>{
