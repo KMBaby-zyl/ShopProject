@@ -12,10 +12,11 @@ import Customers from './Component/Customers.js';
 
 import { createStore } from 'redux';
 import { rshop } from './reducer/rshop.js';
-// import { rCustomer } from './reducer/rCustomer.js';
+import { rCustomer } from './reducer/rCustomer.js';
 let store_shop = createStore(rshop);
-// let store_custom = createStore(rCustomer);
+let store_custom = createStore(rCustomer);
 
+import myworld from './world.js';
 
 export default class App extends Component {
     styles = StyleSheet.create({
@@ -28,11 +29,15 @@ export default class App extends Component {
         }
     });
 
+    componentDidMount() {
+        myworld.init(store_shop, store_custom);
+    }
+
     render() {
         return (
             <View>
                 <View style={this.styles.Shop} >
-                    <Shop store={store_shop}></Shop>
+                    <Shop store={store_shop} cusStor={store_custom}></Shop>
                 </View>
             </View>
         )

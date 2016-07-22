@@ -1,17 +1,19 @@
-import { createStore } from 'redux';
-import { r_changeDoor } from './reducer/rshop.js';
-import { rCustomer } from './reducer/rCustomer.js';
 import { changeDoor } from './action/action.js';
 
-// let store_custom = createStore(rCustomer);
-// let store_shop = createStore(r_changeDoor);
-
-
 export default class world {}
-world.run = function(handle){
-    // setInterval(function(){
-    //     requestAnimationFrame(function(){
-    //         // store_shop.dispatch(changeDoor('front'));
-    //     });
-    // }, 2000);
+world.run = function(){
+    let self = this;
+    setInterval(function(){
+        requestAnimationFrame(function(){
+
+        });
+    }, 2000);
+}
+
+
+world.init = function(store_shop, store_custom){
+    this.store_shop = store_shop;
+    this.store_custom = store_custom;
+
+    this.run();
 }

@@ -13,9 +13,9 @@ import { changeDoor } from '../action/action.js';
 import { connect } from 'react-redux';
 
 import Customers from '../Component/Customers.js';
-import { createStore } from 'redux';
-import { rCustomer } from '../reducer/rCustomer.js';
-let store_custom = createStore(rCustomer);
+// import { createStore } from 'redux';
+// import { rCustomer } from '../reducer/rCustomer.js';
+// let store_custom = createStore(rCustomer);
 
 
 class Shop extends Component {
@@ -36,7 +36,7 @@ class Shop extends Component {
     });
 
     render() {
-        const { dispatch } = this.props;
+        const { dispatch, cusStor } = this.props;
 
         return (
             <View>
@@ -56,7 +56,7 @@ class Shop extends Component {
                         </TouchableHighlight>
                 }
                 {
-                    <Customers store={store_custom}></Customers>
+                    <Customers store={cusStor}></Customers>
                 }
             </View>
         )
