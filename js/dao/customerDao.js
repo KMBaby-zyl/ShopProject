@@ -20,13 +20,13 @@ CustomerDao.addOne = function(){
     return d;
 }
 
-CustomerDao.delOne = function(item){
+CustomerDao.delOne = function(id){
     // Write
     realm.write(() => {
 
-        // let c = realm.objects('Customer').filtered('id == "' + id + '"');
+        let c = realm.objects('Customer').filtered('id == "' + id + '"');
         // console.warn(JSON.stringify(c));
-        realm.delete(item);
+        realm.delete(c);
     });
 }
 

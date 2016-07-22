@@ -28,7 +28,7 @@ class Customers extends Component {
         };
 
         const { dispatch } = this.props;
-        // dispatch(addCustom());
+        dispatch(addCustom());
     }
 
     styles = StyleSheet.create({
@@ -50,13 +50,13 @@ class Customers extends Component {
         let self = this;
         const { dispatch } = this.props;
 
-        console.warn(JSON.stringify('render' + this.props.customerList.length));
+        // console.warn(JSON.stringify('render' + this.props.customerList.length));
         return (
             <View>
                 {
                     this.props.customerList.map(function(item){
                         return <TouchableHighlight key={item.id} onPress={ () =>{
-                                dispatch(clickCustom(item))
+                                dispatch(clickCustom(item.id))
                             }} style={self.styles.customer_1}>
                                 <Text>{self.state.name + self.state.peopleNum}</Text>
                             </TouchableHighlight>
@@ -70,7 +70,7 @@ class Customers extends Component {
 
 
 function select(state){
-    console.warn(JSON.stringify('connect'+state.customerList.length));
+    // console.warn(JSON.stringify('connect'+state.customerList.length));
     return {
         customerList: state.customerList
     }

@@ -10,7 +10,7 @@ export function addCustom() {
   return { type: ADD_CUSTOMER}
 }
 
-export function clickCustom(item) {
-  return { type: CLICK_CUSTOMER, item: item }
+export function clickCustom(id) {
+  return { type: CLICK_CUSTOMER, id: id }
 }
 

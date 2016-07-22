@@ -24,23 +24,25 @@ export function rCustomer(state = initialState, action) {
 function add_customer(state, action){
     let one = cDao.addOne();
 
-    return state.customerList.push(one);
+    state.customerList.push(one);
+    return Object.assign({}, state);
 }
 
 function click_customer(state, action){
     // console.warn(state.customerList.length);
 
-    state.customerList = state.customerList.filter(function(item){
-        return item.id != action.item.id
+    let customerList = state.customerList.filter(function(item){
+        return item.id != action.id
     });
 
-    console.warn(state.customerList.length);
-    // cDao.delOne(action.item);
+    cDao.delOne(action.id);
 
     // JSON.stringify(state);
 
     // let r = delete item;
 
-    return state;
+    return Object.assign({}, state, {
+        customerList: customerList
+    });
 }
 
