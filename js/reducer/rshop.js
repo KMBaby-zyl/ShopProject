@@ -4,11 +4,12 @@ const initialState = {
   showType: changeDoor('front')
 };
 
-export function r_changeDoor(state = initialState, action) {
+export function rshop(state = initialState, action) {
     if (typeof state === 'undefined') {
         return initialState
     }
 
+    console.warn(action.type);
     switch (action.type) {
         case 'change_door':
             return change_door(state, action)

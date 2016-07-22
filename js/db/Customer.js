@@ -6,6 +6,11 @@ Customer.schema = {
     properties: {
         id:    'string',
         name: 'string',
+        width: 'int',
+        height: 'int',
+        backgroundColor: 'string',
+        left: 'int',
+        top: 'int'
     },
 };
 

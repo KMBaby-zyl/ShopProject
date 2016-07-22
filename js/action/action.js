@@ -3,7 +3,7 @@ const ADD_CUSTOMER = 'ADD_CUSTOMER';
 const CLICK_CUSTOMER = 'CLICK_CUSTOMER';
 
 export function changeDoor(text) {
-  return { type: CHANGE_DOOR, text }
+  return { type: CHANGE_DOOR, text: text }
 }
 
 export function addCustom() {

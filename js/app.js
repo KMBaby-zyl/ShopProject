@@ -11,9 +11,9 @@ import Customers from './Component/Customers.js';
 
 
 import { createStore } from 'redux';
-import { r_changeDoor } from './reducer/index.js';
+import { rshop } from './reducer/rshop.js';
 import { rCustomer } from './reducer/rCustomer.js';
-let store_shop = createStore(r_changeDoor);
+let store_shop = createStore(rshop);
 let store_custom = createStore(rCustomer);
 
 

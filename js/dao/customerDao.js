@@ -2,6 +2,7 @@ const Realm = require('realm');
 import Customer from '../db/Customer.js';
 import {guid} from '../utils/utils.js';
 import Mock from 'mockjs';
+import {ScreenHeight, ScreenWidth} from '../utils/common.js';
 
 const realm = new Realm({schema: [Customer]});
 
@@ -11,8 +12,12 @@ CustomerDao.addOne = function(){
 
     let d = Mock.mock({
         name: '@cname',
-        left: '@integer(60, 100)',
-        id: '@guid'
+        id: '@guid',
+        left: '@integer(0, ' + ScreenWidth + ')',
+        top: '@integer(0, ' + ScreenHeight + ')',
+        width: 50,
+        height: 50,
+        backgroundColor: '#FFD700'
     });
     // Write
     realm.write(() => {
@@ -36,7 +41,16 @@ CustomerDao.findALl = function(){
     let r = realm.objects('Customer');
     let array = [];
     for(let i in r){
-        array.push(r[i]);
+        let item = Object.assign({}, r[i], {
+            styles: {
+            left: r[i].left,
+            top: r[i].top,
+            width: r[i].width,
+            height: r[i].height,
+            backgroundColor: r[i].backgroundColor,
+        }
+        });
+        array.push(item);
     }
     return array;
 }

@@ -12,14 +12,19 @@ import {
     View
 } from 'react-native';
 import App from './js/app.js';
-
+import myworld from './js/world.js';
 
 class AwesomeProject extends Component {
+    componentDidMount() {
+        myworld.run();
+    }
     render() {
         return (
             <App></App>
         );
     }
 }
+
+
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);

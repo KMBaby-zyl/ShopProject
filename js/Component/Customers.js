@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import {ScreenHeight, ScreenWidth} from '../utils/common.js';
 import {
   View,
   Image,
@@ -27,39 +27,22 @@ class Customers extends Component {
         };
 
         const { dispatch } = this.props;
-        dispatch(addCustom());
+        // dispatch(addCustom());
     }
-
-    styles = StyleSheet.create({
-        customer_1: {
-            width: 50,
-            height: 50,
-            backgroundColor: '#FFD700',
-            top: 0,
-            left: 0,
-            // position: 'absolute'
-        }
-    });
-
-    // componentWillReceiveProps(nextProps){
-    //     console.warn('revice');
-    //     this.setState({
-    //         customerList: props.customerList
-    //     });
-    // }
 
     render() {
         let self = this;
         const { dispatch } = this.props;
 
-        // console.warn(JSON.stringify('render' + this.props.customerList.length));
+
+        // console.warn(JSON.stringify('render' + this.props.customerList));
         return (
             <View>
                 {
                     this.props.customerList.map(function(item){
                         return <TouchableHighlight key={item.id} onPress={ () =>{
                                 dispatch(clickCustom(item.id))
-                            }} style={self.styles.customer_1}>
+                            }} style={item.styles}>
                                 <Text>{item.name }</Text>
                             </TouchableHighlight>
                     })
