@@ -5,25 +5,20 @@ import {
   Image,
   Text,
   TouchableHighlight,
+  Animated,
   StyleSheet
 } from 'react-native';
 
 
-import { clickCustom, addCustom } from '../action/action.js';
+import { addCustom } from '../action/action.js';
 import { connect } from 'react-redux';
+import CustomerItem from './CustomerItem.js';
 
 class Customers extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            left: 100,
-            right: 100,
-            img: '',
-            name: '顾客',
-            showType: '0',
-            equipment: null, // 携带的装备id
-            // customerList: props.customerList
         };
 
         const { dispatch } = this.props;
@@ -31,27 +26,29 @@ class Customers extends Component {
     }
 
     styles = StyleSheet.create({
-        view: {
+        view:{
             height: 0,
             width: 0,
             backgroundColor: '#dfdfdf',
             position: 'absolute',
+            left: 0,
+            top: 0
         }
     });
+
+    componentDidMount() {
+    }
+
     render() {
         let self = this;
         const { dispatch } = this.props;
+        // console.warn('render' + JSON.stringify(this.styles));
 
-        // console.warn(JSON.stringify('render' + this.props.customerList));
         return (
             <View style={this.styles.view}>
                 {
                     this.props.customerList.map(function(item){
-                        return <TouchableHighlight key={item.id} onPress={ () =>{
-                                dispatch(clickCustom(item.id))
-                            }} style={item.styles}>
-                                <Text>{item.name }</Text>
-                            </TouchableHighlight>
+                        return <CustomerItem key={item.id} item={item}></CustomerItem>
                     })
                 }
             </View>
@@ -62,7 +59,7 @@ class Customers extends Component {
 
 
 function select(state){
-    console.warn('connect' + JSON.stringify(state.customerList));
+    // console.warn('connect' + JSON.stringify(state.customerList));
     return {
         customerList: state.customerList
     }

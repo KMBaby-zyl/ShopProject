@@ -3,7 +3,8 @@ import {ScreenHeight, ScreenWidth} from './utils/common.js';
 
 import {
   View,
-  StyleSheet
+  StyleSheet,
+  NativeModules
 } from 'react-native';
 
 import Shop from './Component/Shop.js';
@@ -13,6 +14,9 @@ import Customers from './Component/Customers.js';
 import { createStore } from 'redux';
 import { rshop } from './reducer/rshop.js';
 import { rCustomer } from './reducer/rCustomer.js';
+
+var CalendarManager = NativeModules.CalendarManager;
+
 let store_shop = createStore(rshop);
 let store_custom = createStore(rCustomer);
 
@@ -31,6 +35,7 @@ export default class App extends Component {
 
     componentDidMount() {
         myworld.init(store_shop, store_custom);
+        CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
     }
 
     render() {

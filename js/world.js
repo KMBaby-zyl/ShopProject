@@ -6,7 +6,7 @@ world.run = function(){
     let self = this;
     setInterval(function(){
         requestAnimationFrame(function(){
-            self.store_custom.dispatch(updateCustom());
+            // self.store_custom.dispatch(updateCustom());
         });
     }, 2000);
 }

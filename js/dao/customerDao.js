@@ -41,15 +41,7 @@ CustomerDao.findALl = function(){
     let r = realm.objects('Customer');
     let array = [];
     for(let i in r){
-        let item = Object.assign({}, r[i], {
-            styles: {
-            left: r[i].left,
-            top: r[i].top,
-            width: r[i].width,
-            height: r[i].height,
-            backgroundColor: r[i].backgroundColor,
-        }
-        });
+        let item = Object.assign({}, r[i]);
         array.push(item);
     }
     return array;
