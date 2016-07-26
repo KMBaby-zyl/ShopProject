@@ -6,7 +6,7 @@ import {
   Text,
   TouchableHighlight,
   Animated,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 

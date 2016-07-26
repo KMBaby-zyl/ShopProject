@@ -5,7 +5,8 @@ import {
   Image,
   Text,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  NativeModules
 } from 'react-native';
 
 
@@ -17,6 +18,7 @@ import Customers from '../Component/Customers.js';
 // import { rCustomer } from '../reducer/rCustomer.js';
 // let store_custom = createStore(rCustomer);
 
+let CalendarManager = NativeModules.CalendarManager;
 
 class Shop extends Component {
 
@@ -43,6 +45,7 @@ class Shop extends Component {
                 {
                     (this.props.showType == 'front') ?
                     <TouchableHighlight onPress={() => {
+                        CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
                         dispatch(changeDoor('backend'))
                         }
                     } style={this.styles.front}>
