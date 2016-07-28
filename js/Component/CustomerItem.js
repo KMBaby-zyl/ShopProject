@@ -25,6 +25,7 @@ export default class CustomersItem extends Component {
             showType: '0',
             equipment: null, // 携带的装备id
             position: new Animated.ValueXY(),
+            isonclick: false
         };
     }
 
@@ -33,12 +34,28 @@ export default class CustomersItem extends Component {
         let {position} = this.state;
 
         this.animateMove();
+    }
 
-        // position.addListener(function(val){
-        //     if(val.x == ScreenWidth){
-        //         self.animateMove();
-        //     }
-        // });
+    clickHandle(callback){
+        let self = this;
+
+
+        let {position} = this.state;
+        let {item} = this.props;
+
+        self.setState({
+            isonclick: true
+        }, function(){
+            position.stopAnimation(function(data){
+                Animated.timing(position, {
+                    toValue: {x: 200, y: 0},
+                    duration: 3000
+                }).start(function(){
+                    // console.warn('del');
+                    callback();
+                });
+            });
+        });
     }
 
     animateMove(){
@@ -64,8 +81,9 @@ export default class CustomersItem extends Component {
                 })
             ]),
         ]).start(function(){
+            if(self.state.isonclick == true) return;
             self.animateMove();
-        });
+        })
     }
 
     render() {
@@ -82,7 +100,9 @@ export default class CustomersItem extends Component {
         return (
             <Animated.View style={this.state.position.getLayout()}>
                 <TouchableHighlight onPress={ () =>{
-                    dispatch(clickCustom(item.id))
+                    self.clickHandle(function(){
+                        dispatch(clickCustom(item.id))
+                    });
                 }} style={item.styles}>
                     <Text>{item.name }</Text>
                 </TouchableHighlight>

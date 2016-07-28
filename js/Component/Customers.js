@@ -22,7 +22,7 @@ import CustomerItem from './CustomerItem.js';
         };
 
         const { dispatch } = this.props;
-        // dispatch(addCustom());
+        dispatch(addCustom());
     }
 
     styles = StyleSheet.create({
