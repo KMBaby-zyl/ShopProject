@@ -38,28 +38,30 @@ class Shop extends Component {
     });
 
     render() {
-        const { dispatch, cusStor } = this.props;
+        const { dispatch, customers } = this.props;
+        const { showType } = this.props.shop;
+        console.warn(JSON.stringify(this.props.shop));
 
         return (
             <View>
                 {
-                    (this.props.showType == 'front') ?
+                    (showType == 'front') ?
                     <TouchableHighlight onPress={() => {
                         CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey');
                         dispatch(changeDoor('backend'))
                         }
                     } style={this.styles.front}>
-                        <Text>{'正门' + this.props.showType}</Text>
+                        <Text>{'正门' + showType}</Text>
                     </TouchableHighlight>
                     :   <TouchableHighlight onPress={ () => {
                                 dispatch(changeDoor('front'))
                             }
                         } style={this.styles.backend}>
-                            <Text>{'后门' + this.props.showType}</Text>
+                            <Text>{'后门' + showType}</Text>
                         </TouchableHighlight>
                 }
                 {
-                    <Customers store={cusStor}></Customers>
+                    <Customers  dispatch={dispatch} customers={customers} ></Customers>
                 }
             </View>
         )
@@ -68,7 +70,8 @@ class Shop extends Component {
 
 function select(state){
     return {
-        showType: state.showType.text
+        shop: state.shop,
+        customers: state.customers
     }
 }
 

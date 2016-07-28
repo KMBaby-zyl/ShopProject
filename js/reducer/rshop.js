@@ -1,7 +1,7 @@
 import {changeDoor} from '../action/action.js';
 
 const initialState = {
-  showType: changeDoor('front')
+  showType: changeDoor('front').text
 };
 
 export function rshop(state = initialState, action) {
@@ -23,11 +23,11 @@ function change_door(state, action){
     switch (action.text) {
         case 'front':
             return Object.assign({}, state, {
-                showType: action
+                showType: action.text
             })
         case 'backend':
             return Object.assign({}, state, {
-                showType: action
+                showType: action.text
             })
     }
 }

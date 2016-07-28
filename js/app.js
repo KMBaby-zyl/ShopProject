@@ -11,14 +11,18 @@ import Shop from './Component/Shop.js';
 import Customers from './Component/Customers.js';
 
 
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { rshop } from './reducer/rshop.js';
 import { rCustomer } from './reducer/rCustomer.js';
 
 let CalendarManager = NativeModules.CalendarManager;
 
-let store_shop = createStore(rshop);
-let store_custom = createStore(rCustomer);
+const rootReducer = combineReducers({
+    shop: rshop,
+    customers: rCustomer
+});
+
+let store_shop = createStore(rootReducer);
 
 import myworld from './world.js';
 
@@ -34,7 +38,7 @@ export default class App extends Component {
     });
 
     componentDidMount() {
-        myworld.init(store_shop, store_custom);
+        myworld.init(store_shop);
     }
 
     render() {
@@ -42,7 +46,7 @@ export default class App extends Component {
         return (
             <View>
                 <View style={this.styles.Shop} >
-                    <Shop store={store_shop} cusStor={store_custom}></Shop>
+                    <Shop store={store_shop}></Shop>
                 </View>
             </View>
         )

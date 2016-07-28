@@ -14,7 +14,7 @@ import { addCustom } from '../action/action.js';
 import { connect } from 'react-redux';
 import CustomerItem from './CustomerItem.js';
 
-class Customers extends Component {
+ export default class Customers extends Component {
     constructor(props) {
         super(props);
 
@@ -42,13 +42,14 @@ class Customers extends Component {
     render() {
         let self = this;
         const { dispatch } = this.props;
+        let {customerList} = this.props.customers;
         // console.warn('render' + JSON.stringify(this.styles));
 
         return (
             <View style={this.styles.view}>
                 {
-                    this.props.customerList.map(function(item){
-                        return <CustomerItem key={item.id} item={item}></CustomerItem>
+                    customerList.map(function(item){
+                        return <CustomerItem dispatch={dispatch} key={item.id} item={item}></CustomerItem>
                     })
                 }
             </View>
@@ -58,11 +59,11 @@ class Customers extends Component {
 
 
 
-function select(state){
-    // console.warn('connect' + JSON.stringify(state.customerList));
-    return {
-        customerList: state.customerList
-    }
-}
+// function select(state){
+//     // console.warn('connect' + JSON.stringify(state.customerList));
+//     return {
+//         customerList: state.customers.customerList
+//     }
+// }
 
-export default connect(select)(Customers);
+// export default connect(select)(Customers);

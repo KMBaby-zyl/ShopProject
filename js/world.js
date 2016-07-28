@@ -11,9 +11,8 @@ world.run = function(){
     }, 2000);
 }
 
-world.init = function(store_shop, store_custom){
-    this.store_shop = store_shop;
-    this.store_custom = store_custom;
+world.init = function(store){
+    this.store = store;
 
     // console.warn(this.store_custom);
 

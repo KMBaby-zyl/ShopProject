@@ -32,44 +32,40 @@ export default class CustomersItem extends Component {
         let self = this;
         let {position} = this.state;
 
-
-
         this.animateMove();
 
-        position.addListener(function(val){
-            if(val.x == ScreenWidth){
-                self.animateMove();
-            }
-        });
+        // position.addListener(function(val){
+        //     if(val.x == ScreenWidth){
+        //         self.animateMove();
+        //     }
+        // });
     }
 
     animateMove(){
+        let self = this;
         let {position} = this.state;
+        let {item} = this.props;
+        position.setValue({
+            x: 0,
+            y: 330
+        });
 
-        Animated.sequence([            // 首先执行decay动画，结束后同时执行spring和twirl动画
-            // Animated.decay(position, {   // 滑行一段距离后停止
-            //     velocity: {x: 200, y: 300}, // 根据用户的手势设置速度
-            //     deceleration: 0.997,
-            // }),
-            Animated.parallel([          // 在decay之后并行执行：
+        Animated.sequence([
+            Animated.parallel([
                 Animated.timing(position, {
-                    toValue: {x: ScreenWidth, y: 330},    // 返回到起始点开始
+                    toValue: {x: (ScreenWidth - item.width), y: 330},
                     duration: 3000
                 })
-                // Animated.timing(twirl, {   // 同时开始旋转
-                //     toValue: 360,
-                // }),
             ]),
-            Animated.parallel([          // 在decay之后并行执行：
+            Animated.parallel([
                 Animated.timing(position, {
-                    toValue: {x: 0, y: 330},    // 返回到起始点开始
+                    toValue: {x: 0, y: 330},
                     duration: 3000
                 })
-                // Animated.timing(twirl, {   // 同时开始旋转
-                //     toValue: 360,
-                // }),
             ]),
-        ]).start();
+        ]).start(function(){
+            self.animateMove();
+        });
     }
 
     render() {
