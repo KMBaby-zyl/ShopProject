@@ -39,9 +39,10 @@ export default class CustomersItem extends Component {
     clickHandle(callback){
         let self = this;
 
-
         let {position} = this.state;
         let {item} = this.props;
+
+        if(!item.isShow) return false;
 
         self.setState({
             isonclick: true
@@ -95,6 +96,7 @@ export default class CustomersItem extends Component {
             width: item.width,
             height: item.height,
             backgroundColor: item.backgroundColor,
+            opacity: item.isShow ? 1 : 0
         };
 
         return (

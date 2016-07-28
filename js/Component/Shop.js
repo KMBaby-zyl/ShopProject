@@ -38,7 +38,7 @@ class Shop extends Component {
     });
 
     render() {
-        const { dispatch, customers } = this.props;
+        const { dispatch, customers, shop } = this.props;
         const { showType } = this.props.shop;
         console.warn(JSON.stringify(this.props.shop));
 
@@ -61,7 +61,7 @@ class Shop extends Component {
                         </TouchableHighlight>
                 }
                 {
-                    <Customers  dispatch={dispatch} customers={customers} ></Customers>
+                    <Customers  dispatch={dispatch} customers={customers} shop={shop} ></Customers>
                 }
             </View>
         )

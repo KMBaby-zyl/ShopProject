@@ -2,6 +2,8 @@ const Realm = require('realm');
 import Customer from '../db/Customer.js';
 import {guid} from '../utils/utils.js';
 import Mock from 'mockjs';
+import '../utils/random.data.js';
+
 import {ScreenHeight, ScreenWidth} from '../utils/common.js';
 
 const realm = new Realm({schema: [Customer]});
@@ -17,7 +19,8 @@ CustomerDao.addOne = function(){
         top: '@integer(0, ' + ScreenHeight + ')',
         width: 50,
         height: 50,
-        backgroundColor: '#FFD700'
+        backgroundColor: '#FFD700',
+        where: '@door'
     });
     // Write
     realm.write(() => {

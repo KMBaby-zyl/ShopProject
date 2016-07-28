@@ -41,7 +41,7 @@ import CustomerItem from './CustomerItem.js';
 
     render() {
         let self = this;
-        const { dispatch } = this.props;
+        const { dispatch, shop } = this.props;
         let {customerList} = this.props.customers;
         // console.warn('render' + JSON.stringify(this.styles));
 
@@ -49,6 +49,8 @@ import CustomerItem from './CustomerItem.js';
             <View style={this.styles.view}>
                 {
                     customerList.map(function(item){
+                        item.isShow = shop.showType == item.where ? true : false;
+
                         return <CustomerItem dispatch={dispatch} key={item.id} item={item}></CustomerItem>
                     })
                 }

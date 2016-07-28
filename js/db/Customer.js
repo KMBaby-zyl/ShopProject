@@ -10,7 +10,8 @@ Customer.schema = {
         height: 'int',
         backgroundColor: 'string',
         left: 'int',
-        top: 'int'
+        top: 'int',
+        where: 'string'
     },
 };
 
